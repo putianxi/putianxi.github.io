@@ -4,7 +4,8 @@
 
 <script>
     import Leaflet from 'leaflet'
-    const OSM_URL = '//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    import markerClusterGroup from 'leaflet.markercluster'
+
     const GAODE_URL = '//webrd0{s}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=zh_cn&size=1&scale=1&style=7'
 
     export default {
@@ -12,31 +13,59 @@
         data() {
             return {
                 map: null,
+                map_icon_url: "//cdn.bootcss.com/leaflet/1.0.0-rc.2/images/",
                 url: GAODE_URL, // need change subdomains
+                geojson_url: '../../assets/mapdata/hospital.geojson',
+                markers: null,
             };
         },
 
         ready() {
             this.initMap();
             this.addMapLayer();
+            this.addDataLayer(this.geojson_url);
         },
 
         methods: {
             initMap() {
-                this.map = Leaflet.map("leaflet-map",{
+                // need set default L.Icon.Default.imagePath
+                L.Icon.Default.imagePath = this.map_icon_url;
+                
+                this.map = L.map("leaflet-map",{
                     center: this.center,
                     zoom: this.zoom,
                     minZoom: this.minZoom,
                     maxZoom: this.maxZoom,
                     scrollWheelZoom: false,
                 });
+                this.markers = L.markerClusterGroup();
             },
 
             addMapLayer() {
-                Leaflet.tileLayer(this.url, {
+                L.tileLayer(this.url, {
                     attribution: this.attribution,
                     subdomains: ["1", "2", "3", "4"],
                 }).addTo(this.map);
+            },
+
+            addDataLayer(url) {
+                this.$http.get(url).then((response) => {
+                    this.addClusterLayer(response.json());
+                });
+            },
+
+            addClusterLayer(geoJsonData) {
+                let geoJsonLayer = L.geoJson(geoJsonData, {
+                    onEachFeature: this.onEachFeature
+                });
+
+                this.markers.addLayer(geoJsonLayer);
+                this.markers.addTo(this.map);
+                this.map.fitBounds(this.markers.getBounds());
+            },
+
+            onEachFeature(feature, layer) {
+                layer.bindPopup(feature.properties.name);
             },
         }
     }
