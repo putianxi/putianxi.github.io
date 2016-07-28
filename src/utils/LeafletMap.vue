@@ -6,14 +6,14 @@
     import Leaflet from 'leaflet'
     import markerClusterGroup from 'leaflet.markercluster'
 
-    const GAODE_URL = '//webrd0{s}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=zh_cn&size=1&scale=1&style=7'
+    const GAODE_URL = '//webrd0{s}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=zh_cn&size=1&scale=1&style=7';
+    const MAP_IMAGE_PATH = "//cdn.bootcss.com/leaflet/1.0.0-rc.2/images/";
 
     export default {
         props: ['center','zoom','minZoom','maxZoom', 'attribution'],
         data() {
             return {
                 map: null,
-                map_icon_url: "//cdn.bootcss.com/leaflet/1.0.0-rc.2/images/",
                 url: GAODE_URL, // need change subdomains
                 geojson_url: '../../assets/mapdata/hospital.geojson',
                 markers: null,
@@ -29,7 +29,7 @@
         methods: {
             initMap() {
                 // need set default L.Icon.Default.imagePath
-                L.Icon.Default.imagePath = this.map_icon_url;
+                L.Icon.Default.imagePath = MAP_IMAGE_PATH;
                 
                 this.map = L.map("leaflet-map",{
                     center: this.center,
