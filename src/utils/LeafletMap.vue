@@ -4,8 +4,8 @@
 
 <script>
     import Leaflet from 'leaflet'
-    const OSM_URL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    const GAODE_URL = 'http://webrd0{s}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=zh_cn&size=1&scale=1&style=7'
+    const OSM_URL = '//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    const GAODE_URL = '//webrd0{s}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=zh_cn&size=1&scale=1&style=7'
 
     export default {
         props: ['center','zoom','minZoom','maxZoom', 'attribution'],
