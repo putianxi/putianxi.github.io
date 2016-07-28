@@ -13,4 +13,8 @@
     #main-search input {
         border-radius: 0;
     }
+
+    #main-search input:focus {
+        border: 1px solid #ed6c63;
+    }
 </style>
