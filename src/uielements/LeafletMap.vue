@@ -5,49 +5,48 @@
 <script>
     import Leaflet from 'leaflet'
     import markerClusterGroup from 'leaflet.markercluster'
+    import mapProvider from '../utilities/leaflet.MapProviders.js'
 
-    const GAODE_URL = '//webrd0{s}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=zh_cn&size=1&scale=1&style=7';
-    const GOOGLE_URL = 'http://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}';
     const MAP_IMAGE_PATH = "//cdn.bootcss.com/leaflet/1.0.0-rc.2/images/";
 
     export default {
-        props: ['center','zoom','minZoom','maxZoom', 'attribution'],
+        props: ['dataUrl'],
         data() {
             return {
                 map: null,
-                url: GAODE_URL,
-                geojson_url: '../../assets/mapdata/hospital.geojson',
                 markers: null,
+                map_config: {
+                    zoom: 4,
+                    center: [37.5, 106],
+                    minZoom: 2,
+                    maxZoom: 18,
+                    attribution: "&copy; Google Map",
+                },
             };
         },
 
         ready() {
             this.initMap();
             this.addMapLayer();
-            this.addDataLayer(this.geojson_url);
+            if( this.dataUrl !== undefined ) {
+                this.addDataLayer(this.dataUrl);
+            }
         },
 
         methods: {
             initMap() {
-                // need set default L.Icon.Default.imagePath
-                L.Icon.Default.imagePath = MAP_IMAGE_PATH;
-                
                 this.map = L.map("leaflet-map",{
-                    center: this.center,
-                    zoom: this.zoom,
-                    minZoom: this.minZoom,
-                    maxZoom: this.maxZoom,
+                    center: this.map_config.center,
+                    zoom: this.map_config.zoom,
+                    minZoom: this.map_config.minZoom,
+                    maxZoom: this.map_config.maxZoom,
                     // scrollWheelZoom: false,
                 });
-                this.markers = L.markerClusterGroup();
             },
 
             addMapLayer() {
-                L.tileLayer(this.url, {
-                    attribution: this.attribution,
-                    // need change subdomains for gaode
-                    subdomains: ["1", "2", "3", "4"],
-                }).addTo(this.map);
+                L.tileLayer.mapProvider('Google.Normal.Map',
+                    {attribution: this.map_config.attribution}).addTo(this.map);
             },
 
             addDataLayer(url) {
@@ -57,6 +56,10 @@
             },
 
             addClusterLayer(geoJsonData) {
+                // need set default L.Icon.Default.imagePath
+                L.Icon.Default.imagePath = MAP_IMAGE_PATH;
+                this.markers = L.markerClusterGroup();
+
                 let geoJsonLayer = L.geoJson(geoJsonData, {
                     onEachFeature: this.onEachFeature
                 });

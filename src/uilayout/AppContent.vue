@@ -1,12 +1,6 @@
 <template>
     <main-search></main-search>
-    <leaflet-map :zoom="zoom" 
-                 :center="center" 
-                 :min-zoom="minZoom" 
-                 :max-zoom="maxZoom"
-                 :attribution = "attribution"
-    >
-    </leaflet-map>
+    <leaflet-map :data-url="data_url"></leaflet-map>
 </template>
 
 <script>
@@ -17,11 +11,7 @@
         components: { MainSearch, LeafletMap },
         data () {
             return {
-                zoom: 4,
-                center: [37.5, 106],
-                minZoom: 2,
-                maxZoom: 18,
-                attribution: "&copy; 高德地图",
+                data_url: '../../assets/mapdata/hospital.geojson',
             };
         }
     }
