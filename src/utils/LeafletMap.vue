@@ -7,6 +7,7 @@
     import markerClusterGroup from 'leaflet.markercluster'
 
     const GAODE_URL = '//webrd0{s}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=zh_cn&size=1&scale=1&style=7';
+    const GOOGLE_URL = 'http://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}';
     const MAP_IMAGE_PATH = "//cdn.bootcss.com/leaflet/1.0.0-rc.2/images/";
 
     export default {
@@ -14,7 +15,7 @@
         data() {
             return {
                 map: null,
-                url: GAODE_URL, // need change subdomains
+                url: GAODE_URL,
                 geojson_url: '../../assets/mapdata/hospital.geojson',
                 markers: null,
             };
@@ -44,6 +45,7 @@
             addMapLayer() {
                 L.tileLayer(this.url, {
                     attribution: this.attribution,
+                    // need change subdomains for gaode
                     subdomains: ["1", "2", "3", "4"],
                 }).addTo(this.map);
             },

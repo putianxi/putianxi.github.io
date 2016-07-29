@@ -20,7 +20,7 @@
                 zoom: 4,
                 center: [37.5, 106],
                 minZoom: 2,
-                maxZoom: 15,
+                maxZoom: 18,
                 attribution: "&copy; 高德地图",
             };
         }
