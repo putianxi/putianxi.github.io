@@ -39,7 +39,7 @@
 </template>
 
 <script>
-    import HospitalBox from '../uiblocks/HospitalBox.vue'
+    import HospitalBox from '../uielements/HospitalBox.vue'
 
     export default {
         components: { HospitalBox },

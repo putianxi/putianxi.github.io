@@ -37,7 +37,7 @@
                     zoom: this.zoom,
                     minZoom: this.minZoom,
                     maxZoom: this.maxZoom,
-                    scrollWheelZoom: false,
+                    // scrollWheelZoom: false,
                 });
                 this.markers = L.markerClusterGroup();
             },

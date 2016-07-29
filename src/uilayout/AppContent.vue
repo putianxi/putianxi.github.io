@@ -10,8 +10,8 @@
 </template>
 
 <script>
-    import MainSearch from '../utils/MainSearch.vue'
-    import LeafletMap from '../utils/LeafletMap.vue'
+    import MainSearch from '../uielements/MainSearch.vue'
+    import LeafletMap from '../uielements/LeafletMap.vue'
 
     export default {
         components: { MainSearch, LeafletMap },

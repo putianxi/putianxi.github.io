@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
-import AppHeader from './uielements/AppHeader.vue'
-import AppMain from './uielements/AppMain.vue'
-import AppContent from './uielements/AppContent.vue'
-import AppSidebar from './uielements/AppSidebar.vue'
-import AppFooter from './uielements/AppFooter.vue'
+import AppHeader from './uilayout/AppHeader.vue'
+import AppMain from './uilayout/AppMain.vue'
+import AppContent from './uilayout/AppContent.vue'
+import AppSidebar from './uilayout/AppSidebar.vue'
+import AppFooter from './uilayout/AppFooter.vue'
 
 Vue.use(VueResource)
 
