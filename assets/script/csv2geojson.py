@@ -3,8 +3,8 @@
 import json
 import csv
 
-CSV_FILE = 'hospital.csv'
-GEOJSON_FILE = 'hospital.geojson'
+CSV_FILE = '../data/hospital.csv'
+GEOJSON_FILE = '../data/hospital.geojson'
 # final feature list
 features_list = []
 

@@ -1,22 +1,5 @@
 <template>
-
-    <div class="control is-grouped" id="select-group">
-        <div class="control is-expanded">
-            <span class="select is-fullwidth">
-                <select>
-                    <option value="">选择省份</option>
-                </select>
-            </span>
-        </div>
-
-        <div class="control is-expanded">
-            <span class="select is-fullwidth">
-                <select>
-                    <option value="">选择城市</option>
-                </select>
-            </span>
-        </div>
-    </div>
+    <area-select-box></area-select-box>
 
     <hospital-box v-for="hospital in hospital_list"
                   :hospital-info="hospital"
@@ -40,9 +23,10 @@
 
 <script>
     import HospitalBox from '../uielements/HospitalBox.vue'
+    import AreaSelectBox from '../uielements/AreaSelectBox.vue'
 
     export default {
-        components: { HospitalBox },
+        components: { HospitalBox, AreaSelectBox },
         data() {
             return {
                 hospital_list: [
@@ -56,21 +40,13 @@
         },
         methods: {
             fetchOperalist() {
-
+                console.log(chinaList[0]);
             },
         }
     }
 </script>
 
 <style>
-    #select-group {
-        margin-bottom: 1rem;
-    }
-
-    #select-group select {
-        border-radius: 0;
-    }
-
     .card-pagination .button {
         border-radius: 2px;
     }
