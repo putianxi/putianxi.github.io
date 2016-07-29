@@ -11,7 +11,7 @@
         components: { MainSearch, LeafletMap },
         data () {
             return {
-                data_url: '../../assets/mapdata/hospital.geojson',
+                data_url: '../../assets/data/hospital.geojson',
             };
         }
     }

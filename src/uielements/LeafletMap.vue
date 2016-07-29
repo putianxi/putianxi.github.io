@@ -35,6 +35,9 @@
 
         methods: {
             initMap() {
+                // need set default L.Icon.Default.imagePath
+                L.Icon.Default.imagePath = MAP_IMAGE_PATH;
+
                 this.map = L.map("leaflet-map",{
                     center: this.map_config.center,
                     zoom: this.map_config.zoom,
@@ -45,7 +48,7 @@
             },
 
             addMapLayer() {
-                L.tileLayer.mapProvider('Google.Normal.Map',
+                L.tileLayer.mapProvider('GaoDe.Normal.Map',
                     {attribution: this.map_config.attribution}).addTo(this.map);
             },
 
@@ -56,8 +59,6 @@
             },
 
             addClusterLayer(geoJsonData) {
-                // need set default L.Icon.Default.imagePath
-                L.Icon.Default.imagePath = MAP_IMAGE_PATH;
                 this.markers = L.markerClusterGroup();
 
                 let geoJsonLayer = L.geoJson(geoJsonData, {
