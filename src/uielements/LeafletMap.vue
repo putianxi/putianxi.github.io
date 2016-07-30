@@ -16,6 +16,7 @@
             return {
                 map: null,
                 markers: null,
+                geoJsonLayer: null,
                 map_config: {
                     zoom: 4,
                     center: [37.5, 106],
@@ -52,13 +53,19 @@
             },
 
             addClusterLayer(geoJsonData) {
+
+                // clear pervious layer
+                if(this.markers) {
+                    this.markers.clearLayers();
+                }
+
                 this.markers = L.markerClusterGroup();
 
-                let geoJsonLayer = L.geoJson(geoJsonData, {
+                this.geoJsonLayer = L.geoJson(geoJsonData, {
                     onEachFeature: this.onEachFeature
                 });
 
-                this.markers.addLayer(geoJsonLayer);
+                this.markers.addLayer(this.geoJsonLayer);
                 this.markers.addTo(this.map);
             },
 
