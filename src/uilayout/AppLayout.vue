@@ -1,14 +1,14 @@
 <template>
-    <section class="section main-content">
+    <section class="section app-layout">
         <div class="container">
             <div class="columns">
                 <!-- app-left -->
                 <div class="column is-8">
-                    <slot name="app-left"></slot>
+                    <slot name="app-content"></slot>
                 </div>
                 <!-- app-right -->
                 <div class="column is-4">
-                    <slot name="app-right"></slot>
+                    <slot name="app-sidebar"></slot>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
 </template>
 
 <style>
-    .main-content {
+    .app-layout {
         padding-top: 1rem;
         padding-bottom: 1rem;
     }
