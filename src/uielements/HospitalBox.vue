@@ -11,7 +11,11 @@
                     <h4><a :href="'/hospital_detail.html/' + hospitalInfo.id">{{ hospitalInfo.name }}</a></h4>
                     <p><strong>地区:</strong>{{ hospitalInfo.city }}{{ hospitalInfo.district }}</p>
                     <p class="tooltip"><strong>地址:</strong>{{ hospitalInfo.address | addressFilter }}
-                        <span class="tooltiptext tooltip-top">{{ hospitalInfo.address }}</span>
+                        <span class="tooltiptext tooltip-top"
+                              v-if="hospitalInfo.address.length > 12"
+                        >
+                            {{ hospitalInfo.address }}
+                        </span>
                     </p>
                     <p><strong>电话:</strong>{{ hospitalInfo.phone | phoneFilter}}</p>
                 </div>

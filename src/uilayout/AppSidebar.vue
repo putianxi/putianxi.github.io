@@ -32,7 +32,7 @@
     </div>
 
     <div v-else>
-        <h4 class="pagination-title">Yeah! 此地区暂时安全</h4>
+        <h4 class="pagination-title">此地区暂时安全</h4>
     </div>
 
 </template>
