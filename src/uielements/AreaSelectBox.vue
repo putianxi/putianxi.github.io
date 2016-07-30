@@ -96,7 +96,7 @@
                     province: this.selectedProvince,
                     city: this.selectedCity,
                 }
-                messageBus.$emit('select-area-change', args);
+                messageBus.$emit('area-select-update', args);
             }
         },
         ready() {

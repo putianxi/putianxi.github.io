@@ -68,8 +68,10 @@
 
             initListenMsg() {
                 messageBus.$on('map-data-update', (map_data) => {
-                    this.addClusterLayer(map_data);
-                    this.map.fitBounds(this.markers.getBounds());
+                    if(map_data.features.length !== 0) {
+                        this.addClusterLayer(map_data);
+                        this.map.fitBounds(this.markers.getBounds());
+                    }
                 });
             },
         }

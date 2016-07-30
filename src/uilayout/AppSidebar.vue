@@ -1,31 +1,38 @@
 <template>
     <area-select-box></area-select-box>
 
-    <hospital-box v-for="hospital in hospital_show_list"
-                  :hospital-info="hospital"
-    >
-    </hospital-box >
+    <div v-if="totalPage">
 
-    <div class="columns is-mobile card-pagination">
-        <div class="column">
-            <a class="button"
-               :class=" {'is-disabled' : currentPage === 1 }"
-               @click="updatePageList('prev')"
-            >
-                上一页
-            </a>
+        <hospital-box v-for="hospital in hospital_show_list"
+                      :hospital-info="hospital"
+        >
+        </hospital-box >
+
+        <div class="columns is-mobile card-pagination">
+            <div class="column">
+                <a class="button"
+                   :class=" {'is-disabled' : currentPage === 1 }"
+                   @click="updatePageList('prev')"
+                >
+                    上一页
+                </a>
+            </div>
+            <div class="column">
+                <h2 class="pagination-title">{{ currentPage }} / {{ totalPage }} </h2>
+            </div>
+            <div class="column">
+                <a class="button is-info is-pulled-right"
+                   :class=" {'is-disabled' : currentPage === totalPage }" 
+                   @click="updatePageList('next')"
+                >
+                    下一页
+                </a>
+            </div>
         </div>
-        <div class="column">
-            <h2 class="pagination-title">{{ currentPage }} / {{ totalPage }} </h2>
-        </div>
-        <div class="column">
-            <a class="button is-info is-pulled-right"
-               :class=" {'is-disabled' : currentPage === totalPage }" 
-               @click="updatePageList('next')"
-            >
-                下一页
-            </a>
-        </div>
+    </div>
+
+    <div v-else>
+        <h4 class="pagination-title">Yeah! 此地区暂时安全</h4>
     </div>
 
 </template>
@@ -50,10 +57,18 @@
         methods: {
             initListenMsg() {
                 messageBus.$on('map-data-update', (map_data) => {
+                    // restore page
+                    this.currentPage = 1;
+                    this.totalPage = 1;
+
+                    // update list
                     this.genHosptialList(map_data);
                 });
             },
             genHosptialList(map_data) {
+                // clear old list
+                this.hospital_list = []
+                
                 // update hospital_list
                 for(let el of map_data.features) {
                     this.hospital_list.push(el.properties);
