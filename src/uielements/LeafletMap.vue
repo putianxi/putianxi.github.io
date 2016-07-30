@@ -69,7 +69,10 @@
 
                 this.markers.addLayer(geoJsonLayer);
                 this.markers.addTo(this.map);
-                this.map.fitBounds(this.markers.getBounds());
+
+                if(document.documentElement.clientWidth <= 768){
+                    this.map.fitBounds(this.markers.getBounds());
+                }
             },
 
             onEachFeature(feature, layer) {
