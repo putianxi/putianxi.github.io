@@ -6,6 +6,7 @@
     import Leaflet from 'leaflet'
     import markerClusterGroup from 'leaflet.markercluster'
     import mapProvider from '../utilities/leaflet.MapProviders.js'
+    import messageBus from '../utilities/messageBus.js'
 
     const MAP_IMAGE_PATH = "//cdn.bootcss.com/leaflet/1.0.0-rc.2/images/";
 
@@ -31,6 +32,7 @@
             if( this.dataUrl !== undefined ) {
                 this.addDataLayer(this.dataUrl);
             }
+            this.initListenMsg();
         },
 
         methods: {
@@ -72,6 +74,12 @@
 
             onEachFeature(feature, layer) {
                 layer.bindPopup(feature.properties.name);
+            },
+
+            initListenMsg() {
+                messageBus.$on('id-selected', function (city) {
+                    // console.log(city);
+                })
             },
         }
     }
