@@ -8,10 +8,10 @@
             </div>
             <div class="media-content">
                 <div class="content hospital-name">
-                    <h4><a :href="hospitalInfo.url">{{ hospitalInfo.name }}</a></h4>
-                    <p>地区: {{ hospitalInfo.district }}</p>
-                    <p>地址: {{ hospitalInfo.address }}</p>
-                    <p>电话: {{ hospitalInfo.tel }}</p>
+                    <h4><a :href="'/hospital_detail.html/' + hospitalInfo.id">{{ hospitalInfo.name }}</a></h4>
+                    <p><strong>地区:</strong>{{ hospitalInfo.district }}</p>
+                    <p><strong>地址:</strong>{{ hospitalInfo.address | addressFilter }}</p>
+                    <p><strong>电话:</strong>{{ hospitalInfo.phone | phoneFilter}}</p>
                 </div>
             </div>
         </article>
@@ -19,6 +19,25 @@
 </template>
 
 <script>
+    import Vue from 'vue'
+
+    Vue.filter('addressFilter', (value) => {
+        let max_length = 12;
+        if (typeof value === 'string') {
+            if(value.length > max_length) {
+                return value.substring(0, max_length) + ' ...';
+            }
+        }
+        return value;
+    });
+
+    Vue.filter('phoneFilter', (value) => {
+        if(value === "") {
+            return 'N/A';
+        }
+        return value.split(';')[0];
+    });
+
     export default  {
         props: [ 'hospitalInfo' ],
     }
@@ -34,9 +53,13 @@
         margin-bottom: 15px;
     }
 
-    .hospital-box .content p:not(:last-child) {
+    .hospital-box .content p {
         margin-bottom: 2px;
         font-size: 12px;
+    }
+    .hospital-box .content strong {
+        color: #69707a;
+        margin-right: 10px;
     }
 
     .hospital-box i {

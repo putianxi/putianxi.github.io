@@ -11,7 +11,7 @@
     const MAP_IMAGE_PATH = "//cdn.bootcss.com/leaflet/1.0.0-rc.2/images/";
 
     export default {
-        props: ['dataUrl'],
+        props: ['mapData'],
         data() {
             return {
                 map: null,
@@ -29,9 +29,6 @@
         ready() {
             this.initMap();
             this.addMapLayer();
-            if( this.dataUrl !== undefined ) {
-                this.addDataLayer(this.dataUrl);
-            }
             this.initListenMsg();
         },
 
@@ -54,12 +51,6 @@
                     {attribution: this.map_config.attribution}).addTo(this.map);
             },
 
-            addDataLayer(url) {
-                this.$http.get(url).then((response) => {
-                    this.addClusterLayer(response.json());
-                });
-            },
-
             addClusterLayer(geoJsonData) {
                 this.markers = L.markerClusterGroup();
 
@@ -69,10 +60,6 @@
 
                 this.markers.addLayer(geoJsonLayer);
                 this.markers.addTo(this.map);
-
-                if(document.documentElement.clientWidth <= 768){
-                    this.map.fitBounds(this.markers.getBounds());
-                }
             },
 
             onEachFeature(feature, layer) {
@@ -80,9 +67,10 @@
             },
 
             initListenMsg() {
-                messageBus.$on('id-selected', function (city) {
-                    // console.log(city);
-                })
+                messageBus.$on('map-data-update', (map_data) => {
+                    this.addClusterLayer(map_data);
+                    this.map.fitBounds(this.markers.getBounds());
+                });
             },
         }
     }
