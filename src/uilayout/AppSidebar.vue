@@ -85,7 +85,15 @@
             refreshShowList() {
                 let slice_start = (this.currentPage - 1) * LIST_MAX_LEN;
                 let slice_end = (this.currentPage) * LIST_MAX_LEN;
-                this.hospital_show_list = this.hospital_list.slice(slice_start, slice_end);
+
+                // last page 
+                if(this. currentPage === this.totalPage ) {
+                    this.hospital_show_list = this.hospital_list.slice(-LIST_MAX_LEN);
+                }
+                else {
+                    this.hospital_show_list = this.hospital_list.slice(slice_start, slice_end);
+                }
+                
             },
         },
         ready() {

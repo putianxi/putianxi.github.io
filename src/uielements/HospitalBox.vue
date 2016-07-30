@@ -9,8 +9,10 @@
             <div class="media-content">
                 <div class="content hospital-name">
                     <h4><a :href="'/hospital_detail.html/' + hospitalInfo.id">{{ hospitalInfo.name }}</a></h4>
-                    <p><strong>地区:</strong>{{ hospitalInfo.district }}</p>
-                    <p><strong>地址:</strong>{{ hospitalInfo.address | addressFilter }}</p>
+                    <p><strong>地区:</strong>{{ hospitalInfo.city }}{{ hospitalInfo.district }}</p>
+                    <p class="tooltip"><strong>地址:</strong>{{ hospitalInfo.address | addressFilter }}
+                        <span class="tooltiptext tooltip-top">{{ hospitalInfo.address }}</span>
+                    </p>
                     <p><strong>电话:</strong>{{ hospitalInfo.phone | phoneFilter}}</p>
                 </div>
             </div>
@@ -86,4 +88,48 @@
     .hospital-name a:not(.button) {
         border-bottom: none;
     }
+
+    /* http://www.w3schools.com/css/css_tooltip.asp */
+    .tooltip {
+        display: inline-block;
+        position: relative;
+        /*cursor: zoom-in;*/
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        position: absolute;
+        width: 200px;
+        background-color: #42afe3;
+        color: #fff;
+        text-align: center;
+        padding: 5px;
+        border-radius: 1px;
+        z-index: 1;
+        opacity: 0;
+        font-size: 14px;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 0.9;
+    }
+
+    .tooltip-top {
+        bottom: 125%;
+        left: 50%;
+        margin-left: -100px;
+    }
+
+    .tooltip-top::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #42afe3 transparent transparent transparent;
+    }
+
 </style>
