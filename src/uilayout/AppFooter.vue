@@ -12,13 +12,13 @@
                 </div>
                 <div class="column">
                         <p class="has-text-right footer-icon">
-                            <a class="icon" href="https://github.com/jgthms/bulma">
+                            <a class="icon" href="#">
                                 <i class="fa fa-wechat"></i>
                             </a>
-                            <a class="icon" href="https://github.com/jgthms/bulma">
+                            <a class="icon" href="#">
                                 <i class="fa fa-weibo"></i>
                             </a>
-                            <a class="icon" href="https://github.com/jgthms/bulma">
+                            <a class="icon" href="https://github.com/putianxi/putianxi.github.io" target="_blank">
                                 <i class="fa fa-github"></i>
                             </a>
                         </p>
