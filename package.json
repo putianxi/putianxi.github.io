@@ -12,12 +12,12 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vue": "^1.0.0",
     "babel-runtime": "^6.0.0",
-    "vue-resource": "^0.9.3",
-    "vue-typeahead": "^2.2.1",
     "leaflet": "^1.0.0-rc.2",
-    "leaflet.markercluster": "^1.0.0-rc.1.0"
+    "leaflet.markercluster": "^1.0.0-rc.1.0",
+    "typeahead.js": "^0.11.1",
+    "vue": "^1.0.0",
+    "vue-resource": "^0.9.3"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

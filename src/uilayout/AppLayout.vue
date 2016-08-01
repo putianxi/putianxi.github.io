@@ -16,6 +16,13 @@
 </template>
 
 <style>
+    body {
+        background-color: #fdfdfd;
+        font-family: "Segoe UI", Arial, Helvetica, "Microsoft Jhenghei", 
+                     "Hiragino Sans GB", "WenQuanYi Zen Hei", "Microsoft Yahei", 
+                     SimHei, STHeiti, "WenQuanYi Micro Hei", sans-serif;
+    }
+
     .app-layout {
         padding-top: 1rem;
         padding-bottom: 1rem;

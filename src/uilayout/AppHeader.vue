@@ -48,10 +48,6 @@
 </script>
 
 <style>
-    body {
-        background-color: #fdfdfd;
-    }
-
     .main-header {
         padding: 0.8rem 0;
         background-image: -webkit-linear-gradient(309deg, #E0504A 0%, #ED544F 71%, #C64742 100%);
