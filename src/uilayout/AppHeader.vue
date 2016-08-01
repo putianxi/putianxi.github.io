@@ -49,7 +49,7 @@
 
 <style>
     .main-header {
-        padding: 0.8rem 0;
+        padding: 5px 0;
         background-image: -webkit-linear-gradient(309deg, #E0504A 0%, #ED544F 71%, #C64742 100%);
         background-image: -o-linear-gradient(309deg, #E0504A 0%, #ED544F 71%, #C64742 100%);
         background-image: linear-gradient(141deg, #E0504A 0%, #ED544F 71%, #C64742 100%);
@@ -88,6 +88,10 @@
     @media (max-width: 768px) {
         .main-header {
             z-index: 1001;
+        }
+
+        .main-header .main-logo {
+            margin-left: 10px;
         }
 
         .main-header .nav-right.is-active .nav-item {

@@ -88,7 +88,7 @@
 <style>
     #leaflet-map {
         width: 100%;
-        height: 520px;
+        height: 510px;
     }
 
     @media (max-width: 768px) {
