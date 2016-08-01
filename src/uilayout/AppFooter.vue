@@ -1,14 +1,28 @@
 <template>
     <footer class="footer">
         <div class="container">
-            <div class="content has-text-centered">
-                <p>
-                    Powered by <a href="mailto:putianxi@gmail.com">putianxi@gmail.com</a> 
-                    & <a href="https://putianxi.github.io">putianxi.github.io</a>
-                </p>
-                <p>
-                    <a class="icon" href="https://github.com/putianxi/putianxi.github.io"><i class="fa fa-github"></i></a>
-                </p>
+            <div class="columns is-mobile">
+                <div class="column footer-copyright">
+                    <p>&copy; 2016 <a href="https://putianxi.github.io">PUTIANXI</a></p>
+                </div>
+                <div class="column">
+                    <figure class="image footer-logo">
+                        <img src="../../assets/images/common/footer-logo.png">
+                    </figure>
+                </div>
+                <div class="column">
+                        <p class="has-text-right footer-icon">
+                            <a class="icon" href="https://github.com/jgthms/bulma">
+                                <i class="fa fa-wechat"></i>
+                            </a>
+                            <a class="icon" href="https://github.com/jgthms/bulma">
+                                <i class="fa fa-weibo"></i>
+                            </a>
+                            <a class="icon" href="https://github.com/jgthms/bulma">
+                                <i class="fa fa-github"></i>
+                            </a>
+                        </p>
+                </div>
             </div>
         </div>
     </footer>
@@ -17,7 +31,56 @@
 <style>
     .footer {
         color: #222324;
-        background-color: #fdfdfd;
-        padding: 1rem 0 3rem;
+        background-color: #EAEAEA;
+        padding: 30px 0;
+        margin-top: 40px;
+    }
+
+    .footer-copyright a{
+        color: #69707a;
+    }
+
+    .footer-logo {
+        margin: 0 auto;
+        width: 64px;
+        height: 64px;
+    }
+
+    .footer-copyright, .footer-icon {
+        line-height: 64px;
+    }
+    
+    .footer-icon .icon {
+        font-size: 20px;
+        color: #69707a;
+        vertical-align: middle;
+    }
+
+    .footer-icon a:not(:last-child) {
+        margin-right: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .footer {
+            padding: 30px 20px;
+        }
+
+        .footer-copyright {
+            line-height: 48px;
+            font-size: 12px;
+        }
+
+        .footer-logo {
+            width: 48px;
+            height: 48px;
+        }
+
+        .footer-icon {
+            line-height: 48px;
+        }
+
+        .footer-icon .icon {
+            font-size: 16px;
+        }
     }
 </style>
