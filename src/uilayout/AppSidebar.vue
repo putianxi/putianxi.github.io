@@ -31,8 +31,10 @@
         </div>
     </div>
 
-    <div v-else>
-        <h4 class="pagination-title">此地区暂时安全</h4>
+    <div v-else class="safe-area">
+        <h4>
+            <span class="icon"><i class="fa fa-check"></i></span>此地区暂时安全
+        </h4>
     </div>
 
 </template>
@@ -122,11 +124,20 @@
         border-radius: 2px;
     }
 
-    .pagination-title {
+    .safe-area {
+        padding: 20px 0;
+        background-color: #6AA747;
+    }
+
+    .safe-area h4 {
+        color: #fff;
         text-align: center;
-        line-height: 32px;
+        line-height: 24px;
         font-size: 14px;
-        font-weight: 700;
-        color: #69707a;
+    }
+
+    .safe-area .icon {
+        margin-right: 5px;
+        font-size: 18px;
     }
 </style>
