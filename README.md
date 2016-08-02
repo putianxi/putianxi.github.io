@@ -10,7 +10,7 @@
 
 **数据版权：** [CC 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh)
 
-##### 本项目的数据来源
+#### 本项目的数据来源:
 
 - [https://github.com/open-power-workgroup/Hospital](https://github.com/open-power-workgroup/Hospital)
 - [https://www.zhihu.com/question/23539856](https://www.zhihu.com/question/23539856)
@@ -22,7 +22,7 @@
 
 ### 针对开发者的说明
 
-##### 安装步奏
+#### 安装步奏
 
 ``` bash
 npm install
@@ -32,7 +32,7 @@ npm run build
 
 通过 [http://127.0.0.1:8080](http://127.0.0.1:8080) 访问
 
-##### 网站使用技术栈
+#### 网站使用技术栈
 
 - *JS 框架:* [Vue.js](https://vuejs.org.cn/)
 - *CSS 框架:* [Bulma.io](http://bulma.io/)
@@ -40,7 +40,7 @@ npm run build
 - *地图:* [Leaflet.js](http://leafletjs.com/)
 - *搜索:* [Bloodhound.js](https://github.com/twitter/typeahead.js/blob/master/doc/bloodhound.md)
 
-##### 数据加载与解析
+#### 数据加载与解析
 
 网页在加载时，会异步请求一次 [GeoJson](http://geojson.org/) 数据，然后包括地图、搜索框、sidebar 均使用该数据进行解析和加载。
 
