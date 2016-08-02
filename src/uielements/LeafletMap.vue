@@ -23,7 +23,7 @@
                     center: [37.5, 106],
                     minZoom: 2,
                     maxZoom: 18,
-                    attribution: "&copy; Google Map",
+                    attribution: "&copy; 高德地图",
                 },
             };
         },

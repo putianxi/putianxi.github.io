@@ -133,6 +133,7 @@
     .tooltip:hover .tooltiptext {
         visibility: visible;
         opacity: 0.9;
+        transition-delay: 0.8s;
     }
 
     .tooltip-top {
