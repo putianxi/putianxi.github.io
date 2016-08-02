@@ -17,6 +17,7 @@
                 map: null,
                 markers: null,
                 geoJsonLayer: null,
+                init_map_data: null,
                 map_config: {
                     zoom: 4,
                     center: [37.5, 106],
@@ -73,12 +74,22 @@
                 layer.bindPopup(feature.properties.name);
             },
 
+            updateMapData(map_data) {
+                if(map_data.features.length !== 0) {
+                    this.addClusterLayer(map_data);
+                    this.map.fitBounds(this.markers.getBounds());
+                }
+            },
+
             initListenMsg() {
+
+                messageBus.$on('map-data-init', (map_data) => {
+                    this.init_map_data = map_data;
+                    this.updateMapData(this.init_map_data);
+                });
+
                 messageBus.$on('map-data-update', (map_data) => {
-                    if(map_data.features.length !== 0) {
-                        this.addClusterLayer(map_data);
-                        this.map.fitBounds(this.markers.getBounds());
-                    }
+                    this.updateMapData(map_data);
                 });
             },
         }

@@ -58,7 +58,7 @@
         },
         methods: {
             initListenMsg() {
-                messageBus.$on('map-data-update', (map_data) => {
+                messageBus.$on('sidebar-data-update', (map_data) => {
                     // restore page
                     this.currentPage = 1;
                     this.totalPage = 1;

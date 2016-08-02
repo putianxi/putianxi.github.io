@@ -14,18 +14,15 @@
         components: { MainSearch, LeafletMap },
         data () {
             return {
-                hospital_data: null,
+                init_content_data: null,
                 data_url: '../../assets/data/hospital.geojson',
             };
         },
         methods: {
             fetchData(url) {
                 this.$http.get(url).then((response) => {
-                    this.hospital_data = response.json();
-                    // notify only for first time data init
-                    messageBus.$emit('origin-data-init', this.hospital_data);
-                    // notify for other components
-                    this.notifyDataUpdate(this.hospital_data);
+                    this.init_content_data = response.json();
+                    this.dataInit();
                 });
             },
 
@@ -38,7 +35,7 @@
             filterSelectData(select_area) {
                 // select all province
                 if( select_area.province === 'all' ) {
-                    this.notifyDataUpdate(this.hospital_data);
+                    this.notifyDataUpdate(this.init_content_data);
                     return;
                 }
 
@@ -46,7 +43,7 @@
                 let city_list = [];
 
                 // filter province
-                for(let el of this.hospital_data.features) {
+                for(let el of this.init_content_data.features) {
                     let properties = el.properties;
                     if( properties.province === select_area.province ) {
                         province_list.push(el);
@@ -83,8 +80,16 @@
                 this.notifyDataUpdate(new_geojson_data);
             },
 
-            notifyDataUpdate(map_data) {
-                messageBus.$emit('map-data-update', map_data);
+            dataInit() {
+                messageBus.$emit('map-data-init', this.init_content_data);
+                messageBus.$emit('searchbox-data-init', this.init_content_data);
+                // sidebar only need update
+                messageBus.$emit('sidebar-data-update', this.init_content_data);
+            },
+
+            notifyDataUpdate(data) {
+                messageBus.$emit('map-data-update', data);
+                messageBus.$emit('sidebar-data-update', data);
             },
         },
         ready() {

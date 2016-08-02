@@ -65,7 +65,7 @@
             },
             // init Bloodhound data
             initListenMsg() {
-                messageBus.$on('origin-data-init', (search_data) => {
+                messageBus.$on('searchbox-data-init', (search_data) => {
                     this.engine.add(search_data.features);
                 });
             },
@@ -73,8 +73,17 @@
             // implements VueTypeahead onHit()
             onHit(item) {
                 if(item) {
+                    // set ui
                     this.reset();
                     this.query = item.properties.name;
+                    
+                    // update map data, need geojson format
+                    let map_data = {
+                        type: 'FeatureCollection',
+                        features: []
+                    }
+                    map_data.features.push(item);
+                    messageBus.$emit('map-data-update', map_data);
                 }
             }
         },
