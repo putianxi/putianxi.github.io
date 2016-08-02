@@ -8,16 +8,20 @@
             </div>
             <div class="media-content">
                 <div class="content hospital-name">
-                    <h4><a :href="'/hospital_detail.html/' + hospitalInfo.id">{{ hospitalInfo.name }}</a></h4>
-                    <p><strong>地区:</strong>{{ hospitalInfo.city }}{{ hospitalInfo.district }}</p>
-                    <p class="tooltip"><strong>地址:</strong>{{ hospitalInfo.address | addressFilter }}
+                    <h4>
+                        <a @click.prevent="updateMapData(hospitalInfo)">
+                            {{ hospitalInfo.properties.name }}
+                        </a>
+                    </h4>
+                    <p><strong>地区:</strong>{{ hospitalInfo.properties.city }}{{ hospitalInfo.properties.district }}</p>
+                    <p class="tooltip"><strong>地址:</strong>{{ hospitalInfo.properties.address | addressFilter }}
                         <span class="tooltiptext tooltip-top"
-                              v-if="hospitalInfo.address.length > 12"
+                              v-if="hospitalInfo.properties.address.length > 12"
                         >
-                            {{ hospitalInfo.address }}
+                            {{ hospitalInfo.properties.address }}
                         </span>
                     </p>
-                    <p><strong>电话:</strong>{{ hospitalInfo.phone | phoneFilter}}</p>
+                    <p><strong>电话:</strong>{{ hospitalInfo.properties.phone | phoneFilter}}</p>
                 </div>
             </div>
         </article>
@@ -26,6 +30,7 @@
 
 <script>
     import Vue from 'vue'
+    import messageBus from '../utilities/messageBus.js'
 
     Vue.filter('addressFilter', (value) => {
         let max_length = 12;
@@ -46,6 +51,17 @@
 
     export default  {
         props: [ 'hospitalInfo' ],
+        methods: {
+            updateMapData(data) {
+                // update map data, need geojson format
+                let map_data = {
+                    type: 'FeatureCollection',
+                    features: []
+                }
+                map_data.features.push(data);
+                messageBus.$emit('map-data-update', map_data);
+            }
+        }
     }
 </script>
 

@@ -73,7 +73,7 @@
                 
                 // update hospital_list
                 for(let el of map_data.features) {
-                    this.hospital_list.push(el.properties);
+                    this.hospital_list.push(el);
                 }
 
                 // update totalPage
