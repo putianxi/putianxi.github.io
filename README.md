@@ -1,4 +1,4 @@
-# 滚蛋吧！莆田君
+# 滚蛋吧！莆田系
 
 ![截图](./assets/images/screenshot/index.jpg)
 
