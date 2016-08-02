@@ -22,8 +22,10 @@
             fetchData(url) {
                 this.$http.get(url).then((response) => {
                     this.hospital_data = response.json();
-                    this.notifyDataUpdate(this.hospital_data)
-                    
+                    // notify only for first time data init
+                    messageBus.$emit('origin-data-init', this.hospital_data);
+                    // notify for other components
+                    this.notifyDataUpdate(this.hospital_data);
                 });
             },
 

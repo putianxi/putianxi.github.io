@@ -1,51 +1,82 @@
 <template>
     <div class="control has-icon" id="main-search">
-        <input class="input" type="text" placeholder="搜索莆田系医院、所在城市等" v-model="query">
+        <input class="input" type="text" placeholder="搜索莆田系医院、所在城市等" v-model="query"
+               @keydown.down="down" @keydown.up="up" @keydown.enter="hit" 
+               @keydown.tab.prevent="down" @keydown.esc="reset" 
+               @blur="reset" @input="update"
+        >
         <i class="fa fa-search"></i>
         <i class="fa fa-times icon-close" 
            v-show="query.length"
            @click="resetSearch()"
         ></i>
+
+        <ul v-show="hasItems" class="search-list">
+            <li v-for="item in items" :class="activeClass($index)" 
+                @mousedown.prevent="hit" @mousemove="setActive($index)">
+                {{ item.properties.name }}
+            </li>
+        </ul>
     </div>
 </template>
 
 <script>
-    import Bloodhound from 'typeahead.js';
+    import Bloodhound from 'bloodhound-js';
     import messageBus from '../utilities/messageBus.js'
+    import VueTypeahead from '../utilities/VueTypeahead.js'
 
     export default {
+        extends: VueTypeahead,
         data() {
             return {
                 engine: null,
                 query: '',
                 limit: 5,
                 minChars: 2,
-                
             }
         },
 
         methods: {
-            resetSearch() {
-                this.searchString = '';
+            // for Bloodhound.js
+            datumTokenizerIndex(obj){
+                let tokens = [];
+
+                // setting keywords minCharts
+                let minSize = 2;
+
+                //the available string is 'name' in your datum
+                let stringSize = obj.properties.name.length;
+                //multiple combinations for every available size
+                //(eg. dog = d, o, g, do, og, dog)
+                for (let size = minSize; size <= stringSize; size++) {
+                    for (let i = 0; i+size<= stringSize; i++) {
+                        tokens.push(obj.properties.name.substr(i, size));
+                    }
+                }
+                return tokens;
             },
+            // for Bloodhound.js
             initSearchEngine() {
                 this.engine = new Bloodhound({
-                    identify: (obj) => { return obj.properties.name; },
+                    // identify: (obj) => { return obj.properties.name; },
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
-                    datumTokenizer: (obj) => { return Bloodhound.tokenizers.whitespace(obj.properties.name) }
+                    datumTokenizer: this.datumTokenizerIndex,
                 });
             },
+            // init Bloodhound data
             initListenMsg() {
-                messageBus.$on('map-data-update', (search_data) => {
+                messageBus.$on('origin-data-init', (search_data) => {
                     this.engine.add(search_data.features);
-                    // console.log(this.engine.get('安顺阳光妇科医院'));
-                    this.engine.search('妇产医院', function(response) {
-                        for(let el of response){
-                            console.log(el.properties.name)
-                        }
-                    });
                 });
             },
+
+            // implements VueTypeahead onHit()
+            onHit(item) {
+                if(item) {
+                    this.reset();
+                    this.query = item.properties.name;
+                }
+            }
         },
         ready() {
             this.initSearchEngine();
@@ -57,6 +88,7 @@
 <style>
     #main-search {
         margin-bottom: 1rem;
+        position: relative;
     }
 
     #main-search input {
@@ -64,7 +96,7 @@
     }
 
     #main-search input:focus {
-        border: 1px solid #E0504A;
+        border: 1px solid #ed6c63;
     }
 
     #main-search i.icon-close {
@@ -74,4 +106,44 @@
         cursor: pointer;
         pointer-events: auto;
     }
+
+    #main-search ul {
+        position: absolute;
+        padding: 0;
+        margin-top: 1rem;
+        width: 100%;
+        background-color: #fdfdfd;
+        list-style: none;
+        border-radius: 1px;
+        box-shadow: 0 2px 3px rgba(17,17,17,.1),0 0 0 1px rgba(17,17,17,.1);
+        z-index: 1001;
+    }
+
+    #main-search li {
+        padding: 10px 16px;
+        border-bottom: 1px solid #d3d6db;
+        cursor: pointer;
+    }
+
+    #main-search li:first-child {
+        border-radius: 1px 1px 0 0;
+    }
+
+    #main-search li:last-child {
+        border-radius: 0 0 1px 1px;
+        border-bottom: 0;
+    }
+
+    #main-search li {
+        font-weight: 400;
+        font-size: 14px;
+        color: #222324;
+    }
+
+    #main-search li.active {
+        background-color: #ed6c63;
+        color: white;
+    }
+
+    
 </style>
