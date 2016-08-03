@@ -8,7 +8,8 @@
     import mapProvider from '../utilities/leaflet.MapProviders.js'
     import messageBus from '../utilities/messageBus.js'
 
-    const MAP_IMAGE_PATH = "//cdn.bootcss.com/leaflet/1.0.0-rc.2/images/";
+    // const MAP_IMAGE_PATH = "//cdn.bootcss.com/leaflet/1.0.0-rc.2/images/";
+    const MAP_IMAGE_PATH = "../../assets/images/leaflet/";
 
     export default {
         props: ['mapData'],
