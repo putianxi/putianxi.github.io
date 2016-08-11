@@ -1,6 +1,6 @@
 <template>
     <div class="control is-horizontal" id="select-group">
-        <div class="control">
+        <div class="control is-grouped">
             <div class="select is-fullwidth">
                 <select v-model="selectedProvince"
                         :class="{ 'is-disabled': provinceList.length === 0 }"
