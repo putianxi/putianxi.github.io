@@ -1,7 +1,7 @@
 <template>
-    <div class="control is-grouped" id="select-group">
-        <div class="control is-expanded">
-            <span class="select is-fullwidth">
+    <div class="control is-horizontal" id="select-group">
+        <div class="control">
+            <div class="select is-fullwidth">
                 <select v-model="selectedProvince"
                         :class="{ 'is-disabled': provinceList.length === 0 }"
                         @change="onChangeProvince()"
@@ -11,11 +11,8 @@
                         {{ option }}
                     </option>
                 </select>
-            </span>
-        </div>
-
-        <div class="control is-expanded">
-            <span class="select is-fullwidth">
+            </div>
+            <div class="select is-fullwidth">
                 <select v-model="selectedCity"
                         :class="{ 'is-disabled': cityList.length === 0 }"
                         @change="emitAreaChnage()"
@@ -25,7 +22,7 @@
                         {{ option }}
                     </option>
                 </select>
-            </span>
+            </div>
         </div>
     </div>
 </template>
@@ -111,7 +108,11 @@
         margin-bottom: 1rem;
     }
 
-    #select-group select {
+    #select-group .select:not(:last-child) {
+        margin-right: 10px;
+    }
+
+    #select-group .select select {
         border-radius: 0;
     }
 </style>
