@@ -17,11 +17,11 @@
             </span>
 
             <div class="nav-right nav-menu" :class="{ 'is-active': mobile_menu }">
-                <a class="nav-item is-active" href="/index.html">首页</a>
+                <!-- <a class="nav-item is-active" href="/index.html">首页</a>
                 <a class="nav-item" href="#">莆田系医院</a>
-                <a class="nav-item" href="#">医疗事故</a>
+                <a class="nav-item" href="#">医疗事故</a> -->
                 <span class="nav-item">
-                    <a class="button is-small is-light is-outlined">
+                    <a class="button is-small is-light is-outlined" href="https://github.com/putianxi/putianxi.github.io/raw/master/assets/data/hospital.xlsx">
                         <span class="icon"><i class="fa fa-download"></i></span>
                         <span>下载</span>
                     </a>
