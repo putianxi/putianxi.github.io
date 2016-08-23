@@ -62,12 +62,17 @@
 
     @media (max-width: 768px) {
         .footer {
-            padding: 30px 20px;
+            padding: 30px 10px;
+        }
+
+        .footer .column {
+            padding: 0;
         }
 
         .footer-copyright {
             line-height: 48px;
             font-size: 12px;
+            margin-left: 10px;
         }
 
         .footer-logo {
@@ -81,6 +86,10 @@
 
         .footer-icon .icon {
             font-size: 16px;
+        }
+
+        .footer-icon a:not(:last-child) {
+            margin-right: 5px;
         }
     }
 </style>
