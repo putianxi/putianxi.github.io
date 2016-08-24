@@ -10,7 +10,7 @@
                         <img src="../../assets/images/common/footer-logo.png">
                     </figure>
                 </div>
-                <div class="column">
+                <div class="column footer-share">
                         <p class="has-text-right footer-icon">
                             <a class="icon" href="#">
                                 <i class="fa fa-wechat"></i>
@@ -89,7 +89,7 @@
         }
 
         .footer-icon a:not(:last-child) {
-            margin-right: 5px;
+            margin-right: 0;
         }
     }
 </style>

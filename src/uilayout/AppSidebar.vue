@@ -124,6 +124,13 @@
         border-radius: 2px;
     }
 
+    .pagination-title {
+        line-height: 32px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
     .safe-area {
         padding: 20px 0;
         background-color: #6AA747;
