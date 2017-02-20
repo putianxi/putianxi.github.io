@@ -11,7 +11,11 @@
     const direct_city = ['北京市', '天津市', '上海市', '重庆市'];
 
     export default {
-        components: { MainSearch, LeafletMap },
+       // components: { MainSearch, LeafletMap },
+       components:{
+            "main-search":MainSearch,
+            "leaflet-map":LeafletMap
+       },
         data () {
             return {
                 init_content_data: null,
