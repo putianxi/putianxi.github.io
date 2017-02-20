@@ -20,21 +20,23 @@
     <link href="//cdn.bootcss.com/leaflet.markercluster/1.0.0-rc.1.0/MarkerCluster.Default.css" rel="stylesheet">
 
     <!--[if lte IE 9]>
-        <meta http-equiv="refresh" content="0; url=http://outdatedbrowser.com/zh-cn" />
+    <meta http-equiv="refresh" content="0; url=http://outdatedbrowser.com/zh-cn" />
     <![endif]-->
 </head>
 
 <body>
-    <app-header></app-header>
+    <div id="app">
+        <app-header></app-header>
 
-    <app-layout>
-        <app-content slot="app-content"></app-content>
-        <app-sidebar slot="app-sidebar"></app-sidebar>
-    </app-layout>
+        <app-layout>
+            <app-content slot="app-content"></app-content>
+            <app-sidebar slot="app-sidebar"></app-sidebar>
+        </app-layout>
 
-    <app-footer></app-footer>
+        <app-footer></app-footer>
 
-    <script src="dist/build.js"></script>
+        <script src="dist/build.js"></script>
+    </div>
 </body>
 
 </html>

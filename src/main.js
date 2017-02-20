@@ -8,9 +8,16 @@ import AppFooter from './uilayout/AppFooter.vue'
 
 Vue.use(VueResource)
 
+//这个是vue 1.0 的写法
+// 2.0+ 中不再推荐
 new Vue({
-    el: 'body',
+    el: '#app',
     components: {
-        AppHeader, AppLayout, AppContent, AppSidebar, AppFooter
+        // AppHeader, AppLayout, AppContent, AppSidebar, AppFooter
+        "app-header":AppHeader,
+        "app-layout":AppLayout,
+        "app-content":AppContent,
+        "app-sidebar":AppSidebar,
+        "app-footer":AppFooter
     }
 })
