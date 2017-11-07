@@ -23,7 +23,7 @@
                 map_config: {
                     zoom: 4,
                     center: [37.5, 106],
-                    minZoom: 2,
+                    minZoom: 3,
                     maxZoom: 18,
                     attribution: "&copy; 高德地图",
                 },
