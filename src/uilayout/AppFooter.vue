@@ -3,7 +3,7 @@
         <div class="container">
             <div class="columns is-mobile">
                 <div class="column footer-copyright">
-                    <p>&copy; 2016 <a href="https://putianxi.github.io">PUTIANXI</a></p>
+                    <p>&copy; 2018 <a href="https://putianxi.github.io">PUTIANXI</a></p>
                 </div>
                 <div class="column">
                     <figure class="image footer-logo">

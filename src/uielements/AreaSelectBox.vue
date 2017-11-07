@@ -6,10 +6,8 @@
                         :class="{ 'is-disabled': provinceList.length === 0 }"
                         @change="onChangeProvince()"
                 >
-                    <option selected value="all">全部省份</option>
-                    <option v-for="option of provinceList" :value="option">
-                        {{ option }}
-                    </option>
+                    <option value="all">全部省份</option>
+                    <option v-for="option of provinceList" :value="option" :key="option">{{ option }}</option>
                 </select>
             </div>
             <div class="select is-fullwidth">
@@ -17,10 +15,8 @@
                         :class="{ 'is-disabled': cityList.length === 0 }"
                         @change="emitAreaChnage()"
                 >
-                    <option selected value="all">全部地区</option>
-                    <option v-for="option of cityList" :value="option">
-                        {{ option }}
-                    </option>
+                    <option value="all">全部地区</option>
+                    <option v-for="option of cityList" :value="option" :key="option">{{ option }}</option>
                 </select>
             </div>
         </div>
@@ -28,8 +24,6 @@
 </template>
 
 <script>
-    import messageBus from '../utilities/messageBus.js';
-
     const direct_city = ['北京市', '天津市', '上海市', '重庆市'];
 
     export default {
@@ -38,8 +32,8 @@
                 // page element
                 provinceList: [],
                 cityList: [],
-                selectedProvince: null,
-                selectedCity: null,
+                selectedProvince: "all",
+                selectedCity: "all",
                 // variable
                 china_area: {},
                 china_area_url: '../../assets/data/china_area.json',
@@ -48,7 +42,7 @@
         methods: {
             fetchChianList(url) {
                 this.$http.get(url).then((response) => {
-                    this.generateChinaArea(response.json());
+                    this.generateChinaArea(response.data);
                 });
             },
             generateChinaArea(china_area_data) {
@@ -93,10 +87,10 @@
                     province: this.selectedProvince,
                     city: this.selectedCity,
                 }
-                messageBus.$emit('area-select-update', args);
+                this.$bus.$emit('area-select-update', args);
             }
         },
-        ready() {
+        mounted() {
             this.fetchChianList(this.china_area_url);
         }
     }

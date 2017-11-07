@@ -1,11 +1,8 @@
-import { util } from 'vue'
-
 export default {
     data() {
         return {
             items: [],
             query: '',
-            placeholder: '',
             current: -1,
             loading: false,
             engine: null,
@@ -42,7 +39,8 @@ export default {
 
         search() {
             if(!this.engine) {
-                return util.warn('You need set Bloodhound engine', this);
+                console.log('You need set Bloodhound engine');
+                return;
             }
 
             this.engine.search(this.query, (response) => {
@@ -97,7 +95,8 @@ export default {
         },
 
         onHit() {
-            util.warn('You need to implement the `onHit` method', this)
+            console.log('You need to implement the `onHit` method')
+            return;
         }
     }
 }

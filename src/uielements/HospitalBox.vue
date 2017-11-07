@@ -30,7 +30,6 @@
 
 <script>
     import Vue from 'vue'
-    import messageBus from '../utilities/messageBus.js'
 
     Vue.filter('addressFilter', (value) => {
         let max_length = 12;
@@ -59,7 +58,7 @@
                     features: []
                 }
                 map_data.features.push(data);
-                messageBus.$emit('map-data-update', map_data);
+                this.$bus.$emit('map-data-update', map_data);
             }
         }
     }

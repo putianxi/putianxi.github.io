@@ -13,11 +13,11 @@
     <link rel="shortcut icon" href="./assets/images/common/favicon.ico">
     <!-- core CSS -->
     <link href="//cdn.bootcss.com/bulma/0.1.2/css/bulma.min.css" rel="stylesheet">
-    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- leaflet CSS -->
-    <link href="//cdn.bootcss.com/leaflet/1.0.0-rc.3/leaflet.css" rel="stylesheet">
-    <link href="//cdn.bootcss.com/leaflet.markercluster/1.0.0-rc.1.0/MarkerCluster.css" rel="stylesheet">
-    <link href="//cdn.bootcss.com/leaflet.markercluster/1.0.0-rc.1.0/MarkerCluster.Default.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/leaflet/1.2.0/leaflet.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/leaflet.markercluster/1.1.0/MarkerCluster.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/leaflet.markercluster/1.1.0/MarkerCluster.Default.css" rel="stylesheet">
 
     <!--[if lte IE 9]>
         <meta http-equiv="refresh" content="0; url=http://outdatedbrowser.com/zh-cn" />
@@ -25,14 +25,16 @@
 </head>
 
 <body>
-    <app-header></app-header>
+    <div id="app">
+        <app-header></app-header>
 
-    <app-layout>
-        <app-content slot="app-content"></app-content>
-        <app-sidebar slot="app-sidebar"></app-sidebar>
-    </app-layout>
+        <app-layout>
+            <app-content slot="app-content"></app-content>
+            <app-sidebar slot="app-sidebar"></app-sidebar>
+        </app-layout>
 
-    <app-footer></app-footer>
+        <app-footer></app-footer>
+    </div>
 
     <script src="dist/build.js"></script>
 </body>

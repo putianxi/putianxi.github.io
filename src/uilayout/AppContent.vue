@@ -1,12 +1,13 @@
 <template>
-    <main-search></main-search>
-    <leaflet-map></leaflet-map>
+    <section class="left-content">
+        <main-search></main-search>
+        <leaflet-map></leaflet-map>
+    </section>
 </template>
 
 <script>
     import MainSearch from '../uielements/MainSearch.vue'
     import LeafletMap from '../uielements/LeafletMap.vue'
-    import messageBus from '../utilities/messageBus.js'
 
     const direct_city = ['北京市', '天津市', '上海市', '重庆市'];
 
@@ -21,13 +22,13 @@
         methods: {
             fetchData(url) {
                 this.$http.get(url).then((response) => {
-                    this.init_content_data = response.json();
+                    this.init_content_data = response.data;
                     this.dataInit();
                 });
             },
 
             initListenMsg() {
-                messageBus.$on('area-select-update', (select_area) => {
+                this.$bus.$on('area-select-update', (select_area) => {
                     this.filterSelectData(select_area);
                 });
             },
@@ -81,18 +82,18 @@
             },
 
             dataInit() {
-                messageBus.$emit('map-data-init', this.init_content_data);
-                messageBus.$emit('searchbox-data-init', this.init_content_data);
+                this.$bus.$emit('map-data-init', this.init_content_data);
+                this.$bus.$emit('searchbox-data-init', this.init_content_data);
                 // sidebar only need update
-                messageBus.$emit('sidebar-data-update', this.init_content_data);
+                this.$bus.$emit('sidebar-data-update', this.init_content_data);
             },
 
             notifyDataUpdate(data) {
-                messageBus.$emit('map-data-update', data);
-                messageBus.$emit('sidebar-data-update', data);
+                this.$bus.$emit('map-data-update', data);
+                this.$bus.$emit('sidebar-data-update', data);
             },
         },
-        ready() {
+        mounted() {
             this.fetchData(this.data_url);
             this.initListenMsg();
         }

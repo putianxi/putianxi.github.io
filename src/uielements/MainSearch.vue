@@ -1,10 +1,8 @@
 <template>
     <div class="control has-icon" id="main-search">
-        <input class="input" type="text" placeholder="搜索莆田系医院、所在城市等" v-model="query"
+        <input type="text" class="input" placeholder="搜索莆田系医院、所在城市等" v-model="query"
                @keydown.down="down" @keydown.up="up" @keydown.enter="hit" 
-               @keydown.tab.prevent="down" @keydown.esc="reset" 
-               @blur="reset" @input="update"
-        >
+               @keydown.esc="reset" @blur="reset" @input="update"/>
         <i class="fa fa-search"></i>
         <i class="fa fa-times icon-close" 
            v-show="query.length"
@@ -12,8 +10,8 @@
         ></i>
 
         <ul v-show="hasItems" class="search-list">
-            <li v-for="item in items" :class="activeClass($index)" 
-                @mousedown.prevent="hit" @mousemove="setActive($index)">
+            <li v-for="(item, index) in items" :class="activeClass(index)" :key="item.properties.name"
+                @mousedown="hit" @mousemove="setActive(index)">
                 {{ item.properties.name }}
             </li>
         </ul>
@@ -22,7 +20,6 @@
 
 <script>
     import Bloodhound from 'bloodhound-js';
-    import messageBus from '../utilities/messageBus.js'
     import VueTypeahead from '../utilities/VueTypeahead.js'
 
     export default {
@@ -65,7 +62,7 @@
             },
             // init Bloodhound data
             initListenMsg() {
-                messageBus.$on('searchbox-data-init', (search_data) => {
+                this.$bus.$on('searchbox-data-init', (search_data) => {
                     this.engine.add(search_data.features);
                 });
             },
@@ -83,11 +80,11 @@
                         features: []
                     }
                     map_data.features.push(item);
-                    messageBus.$emit('map-data-update', map_data);
+                    this.$bus.$emit('map-data-update', map_data);
                 }
             }
         },
-        ready() {
+        mounted() {
             this.initSearchEngine();
             this.initListenMsg();
         }
