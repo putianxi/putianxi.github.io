@@ -36,9 +36,9 @@ npm run build
 
 #### 网站使用技术栈
 
-- *JS 框架:* [Vue.js](https://vuejs.org.cn/)
+- *JS 框架:* [Vue2.js](https://cn.vuejs.org/)
 - *CSS 框架:* [Bulma.io](http://bulma.io/)
-- *Ajax:* [vue-resource](https://github.com/vuejs/vue-resource) 
+- *Ajax:* [axios](https://github.com/axios/axios) 
 - *地图:* [Leaflet.js](http://leafletjs.com/)
 - *搜索:* [Bloodhound.js](https://github.com/twitter/typeahead.js/blob/master/doc/bloodhound.md)
 
