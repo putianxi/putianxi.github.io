@@ -933,3 +933,5 @@ id,name,province,city,district,address,phone,geo_lat,geo_lng,google_map_id,gaode
 936,淄博赢和中医医院,山东省,淄博市,张店区,新村西路107号(市博物馆对面),0533-2177699,118.038127,36.801588,ChIJFzeqSJSM6jURFl4nEuVSpI8,B0FFG9HI0K,B0FFG9HI0K,gaode
 937,遵义妇产医院,贵州省,遵义市,汇川区,深圳路145号(茅草铺中心血站旁),4000852829,106.934921,27.719502,ChIJsyl060dnlTYRLrsxrUfb6Xk,B03541AJ69,B03541AJ69,gaode
 938,遵义女子医院,贵州省,遵义市,红花岗区,中华北路世贸华庭B栋4单元19-2,0851-28825161;18685611166,106.935458,27.691933,ChIJE6W07kdnlTYRxyjLeKVDAtk,B0FFGEZDH5,B0FFGEZDH5,gaode
+939,杭州萧山华东医院,浙江省,杭州市,萧山区,萧绍路608号(近天虹商场),0571-22896666;0571-22899999,120.287011,30.163940,ChIJwwA5SeWETDQRT8c3QMQ-gmU,B023B06Q40,B023B06Q40,gaode
+940,深圳昆仑泌尿外科医院,广东省,深圳市,宝安区,宝安大道4003号,0755-29638666,113.863872,22.581384,ChIJS2KtunTsAzQRfLXA1SBQu8g,B0FFFOJ76J,B0FFFOJ76J,gaode
