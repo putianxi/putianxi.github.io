@@ -1,4 +1,3 @@
-#!/Users/lele/env/flask/bin/python3
 # -*- coding: utf-8 -*-
 import requests
 import json
@@ -18,7 +17,7 @@ def gaode_chinaarea():
         'level': 'country',
         'subdistrict': 3,
         'extensions': 'base',
-        'key': '8726e94e521325daaee5b4738d83bb56',
+        'key': '高德开发者 KEY',
     }
 
     print('Get Gaode data from {}'.format(gaode_url))
@@ -35,11 +34,7 @@ def parse_province(province_list):
     for data in province_list:
         province_name = data['name']
         city_list = parse_city(data['districts'])
-
-        province_el = {
-            'province': province_name,
-            'city': city_list
-        }
+        province_el = {'province': province_name, 'city': city_list}
         final_list.append(province_el)
 
 
